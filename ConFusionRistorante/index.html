@@ -8,9 +8,9 @@
              content must come *after* these tags -->
         <title>Ristorante Con Fusion: About Us</title>
             <!-- Bootstrap -->
-        <link href="css/bootstrap.min.css" rel="stylesheet">
-        <link href="css/bootstrap-theme.min.css" rel="stylesheet">
-        <link href="css/font-awesome.min.css" rel="stylesheet">
+        <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link href="bower_components/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet">
+        <link href="bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet">
         <link href="css/bootstrap-social.css" rel="stylesheet">
         <link href="css/mystyles.css" rel="stylesheet">
 
@@ -66,7 +66,7 @@
                 </div>/.navbar-collapse -->
                 
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a data-toggle="modal" data-target="#loginModal">
+                    <li><a id="loginButton">
                     <span class="glyphicon glyphicon-log-in"></span> Login</a>
                     </li>
                 </ul>
@@ -194,7 +194,7 @@
                     </div>
                     <div class="col-xs-12 col-sm-2">
                         <div  style="padding-top: 100px;"></div>
-                            <a type="button" class="btn btn-warning btn-block" data-toggle="modal" data-target="#reserveTableModal" title="Or Call us at +852 12345678">Reserve Table</a>
+                            <a id="reserveTableButton" type="button" class="btn btn-warning btn-block" title="Or Call us at +852 12345678">Reserve Table</a>
                     </div>
                 </div>
             </div>
@@ -258,6 +258,14 @@
                 <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
                 <span class="sr-only">Next</span>
             </a>
+            <div class="btn-group" id="carouselButtons">
+                <button class="btn btn-danger btn-sm" id="carousel-pause">
+                    <span class="fa fa-pause" aria-hidden="true"></span>
+                </button>
+                <button class="btn btn-danger btn-sm" id="carousel-play">
+                    <span class="fa fa-play" aria-hidden="true"></span>
+                </button>
+            </div>
         </div>
     </div>
 </div>
@@ -377,8 +385,40 @@
             </div>
         </footer>
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="bower_components/jquery/dist/jquery.min.js"></script>
         <!-- Include all compiled plugins (below), or include individual files as needed -->
-        <script src="js/bootstrap.min.js"></script>
+        <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script>
+        $(document).ready(function(){
+            $("#mycarousel").carousel( { interval: 2000 } );
+            
+            $("#carousel-pause").click(function(){
+                $("#mycarousel").carousel('pause');
+            });
+            
+            $("#carousel-play").click(function(){
+                $("#mycarousel").carousel('cycle');
+            });
+        });
+            
+        //Week 4 homework
+        $(document).ready( function() {
+            $("#reserveTableButton").click(
+                function() {
+                    $("#reserveTableModal").modal('toggle');
+                }
+            );
+        }
+        );
+            
+        $(document).ready( function() {
+            $("#loginButton").click(
+                function() {
+                    $("#loginModal").modal('toggle');
+                }
+            );
+        }
+        );
+    </script>
     </body>
 </html>
